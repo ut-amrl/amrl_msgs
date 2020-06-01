@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/ut-amrl/amrl_msgs.svg?branch=master)](https://travis-ci.com/ut-amrl/amrl_msgs)
+
 # AMRL Messages
 
 ROS Message definitions used by UT-AMRL projects.
