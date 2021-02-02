@@ -1,10 +1,32 @@
-PROJECT(amrl_msgs)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.3)
+project(amrl_msgs)
 
-INCLUDE($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
-ROSBUILD_INIT()
-SET(ROS_BUILD_STATIC_LIBS true)
-SET(ROS_BUILD_SHARED_LIBS false)
+## Compile as C++11, supported in ROS Kinetic and newer
+add_compile_options(-std=c++11)
 
-ROSBUILD_GENMSG()
-ROSBUILD_GENSRV()
+find_package(catkin REQUIRED COMPONENTS
+    roscpp
+    rospy
+    std_msgs
+    message_generation
+)
+
+add_message_files(
+    FILES
+    Point2D.msg
+    ColoredArc2D.msg
+    ColoredLine2D.msg
+    ColoredPoint2D.msg
+    Localization2DMsg.msg
+    PathVisualization.msg
+    Point2D.msg
+    Pose2Df.msg
+    RobofleetStatus.msg
+    RobofleetSubscription.msg
+    VisualizationMsg.msg
+)
+
+generate_messages(
+    DEPENDENCIES
+    std_msgs
+)
