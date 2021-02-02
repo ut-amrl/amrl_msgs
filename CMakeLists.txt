@@ -5,8 +5,6 @@ project(amrl_msgs)
 add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED COMPONENTS
-    roscpp
-    rospy
     std_msgs
     message_generation
 )
@@ -30,3 +28,7 @@ generate_messages(
     DEPENDENCIES
     std_msgs
 )
+
+catkin_package(
+    CATKIN_DEPENDS std_msgs message_runtime
+  )
