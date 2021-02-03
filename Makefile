@@ -7,6 +7,8 @@ build_type=Release
 all: build build/CMakeLists.txt.copy
 	$(info Build_type is [${build_type}])
 	$(MAKE) --no-print-directory -C build
+	rm -r -f cmake
+	mv build/devel/share/amrl_msgs/cmake .
 
 clean:
 	rm -rf build lib msg_gen src/amrl_msgs

@@ -17,8 +17,7 @@ ROS Message definitions used by UT-AMRL projects.
     ```
     (Optional, reccomended) Add this to your `.bashrc`
 1. Run `make`. No need to run `catkin_*`, `rosbuild`, `rosbuild`, etc.
-1. To use the messages in your own project, in your `CMakeLists.txt` add the following lines:
+1. To use the messages in your own project, add the `amrl_msgs` directory path to your `CMAKE_PREFIXE_PATH`:
     ```
-    SET(CMAKE_PREFIX_PATH "/ABSOLUTE/GLOBAL/PATH/amrl_msgs/build/devel/share/amrl_msgs/cmake")
-    FIND_PACKAGE(amrl_msgs REQUIRED)
+    amrl_msgs$ export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:`pwd`
     ```
