@@ -1,5 +1,5 @@
-[![ROS1 Noetic](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros1-noetic.yml/badge/svg)](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros1-noetic.yml)
-[![ROS2 Humble](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros2-humble.yml/badge/svg)](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros2-humble.yml)
+[![ROS1 Noetic](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros1-noetic.yml/badge.svg)](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros1-noetic.yml)
+[![ROS2 Humble](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros2-humble.yml/badge.svg)](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros2-humble.yml)
 
 # AMRL Messages
 
