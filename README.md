@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/ut-amrl/amrl_msgs.svg?branch=master)](https://travis-ci.com/ut-amrl/amrl_msgs)
+[![ROS1 Noetic](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros1-noetic.yml/badge.svg)](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros1-noetic.yml)
+[![ROS2 Humble](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros2-humble.yml/badge.svg)](https://github.com/ut-amrl/amrl_msgs/actions/workflows/ros2-humble.yml)
 
 # AMRL Messages
 

@@ -2,7 +2,7 @@
 # or to represent detections from a birds eye view
 
 # Defines time of detection and frame in which the detection was observed
-Header header
+std_msgs/Header header
 
 # Semantic class of the detection
 string semantic_class
