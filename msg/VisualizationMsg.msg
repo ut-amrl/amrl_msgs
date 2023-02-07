@@ -13,3 +13,4 @@ PathVisualization[] path_options
 ColoredPoint2D[] points
 ColoredLine2D[] lines
 ColoredArc2D[] arcs
+ColoredText[] messages
