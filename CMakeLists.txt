@@ -29,6 +29,7 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/ColoredArc2D.msg"
     "msg/ColoredLine2D.msg"
     "msg/ColoredPoint2D.msg"
+    "msg/ColoredText.msg"
     "msg/ElevatorCommand.msg"
     "msg/ElevatorStatus.msg"
     "msg/ErrorReport.msg"
