@@ -1,0 +1,10 @@
+# File name that the latest trajectory (since the beginning of the run or the last start call) should be written to.
+# If empty string, writing will be skipped.
+string trajectory_file_name
+
+# File name that the map should be written to. If empty string, writing will be skipped. (Believe this writes map up
+# to this point, rather than just since the latest trajectory was started)
+string map_file_name
+---
+bool traj_write_success
+bool map_file_write_success
