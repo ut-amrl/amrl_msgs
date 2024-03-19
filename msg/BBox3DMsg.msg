@@ -1,0 +1,11 @@
+float32 x
+float32 y
+float32 z
+float32 l
+float32 w
+float32 h
+float32 yaw
+float32 vx
+float32 vy
+string id
+float32 confidence
