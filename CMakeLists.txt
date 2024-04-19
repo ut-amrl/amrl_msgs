@@ -26,6 +26,8 @@ elseif(${ROS_VERSION} EQUAL "2")
 
   rosidl_generate_interfaces(${PROJECT_NAME}
     "msg/AckermannCurvatureDriveMsg.msg"
+    "msg/BBox2DArrayMsg.msg"
+    "msg/BBox2DMsg.msg"
     "msg/ColoredArc2D.msg"
     "msg/ColoredLine2D.msg"
     "msg/ColoredPoint2D.msg"
@@ -42,7 +44,11 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/Pose2Df.msg"
     "msg/RobofleetStatus.msg"
     "msg/RobofleetSubscription.msg"
+    "msg/TurtlebotDockStatus.msg"
     "msg/VisualizationMsg.msg"
+    "srv/ObjectDetectionSrv.srv"
+    "srv/SocialPipsSrv.srv"
+    "action/TurtlebotDock.action"
     DEPENDENCIES geometry_msgs nav_msgs std_msgs
   )
 
