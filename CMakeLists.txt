@@ -20,6 +20,7 @@ elseif(${ROS_VERSION} EQUAL "2")
   message(STATUS "Compiling with ROS2 COLCON")
   find_package(ament_cmake REQUIRED)
   find_package(geometry_msgs REQUIRED)
+  find_package(sensor_msgs REQUIRED)
   find_package(nav_msgs REQUIRED)
   find_package(std_msgs REQUIRED)
   find_package(rosidl_default_generators REQUIRED)
@@ -49,7 +50,7 @@ elseif(${ROS_VERSION} EQUAL "2")
     "srv/ObjectDetectionSrv.srv"
     "srv/SocialPipsSrv.srv"
     "action/TurtlebotDock.action"
-    DEPENDENCIES geometry_msgs nav_msgs std_msgs
+    DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs
   )
 
   ament_package()
