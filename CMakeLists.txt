@@ -36,6 +36,8 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/ElevatorCommand.msg"
     "msg/ElevatorStatus.msg"
     "msg/ErrorReport.msg"
+    "msg/GPSArrayMsgmsg"
+    "msg/GPSMsg.msg"
     "msg/HumanStateArrayMsg.msg"
     "msg/HumanStateMsg.msg"
     "msg/Localization2DMsg.msg"
