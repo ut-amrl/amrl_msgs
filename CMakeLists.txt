@@ -49,6 +49,7 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/RobofleetSubscription.msg"
     "msg/TurtlebotDockStatus.msg"
     "msg/VisualizationMsg.msg"
+    "srv/graphNavGPSSrv.srv"
     "srv/ObjectDetectionSrv.srv"
     "srv/SocialPipsSrv.srv"
     "action/TurtlebotDock.action"
