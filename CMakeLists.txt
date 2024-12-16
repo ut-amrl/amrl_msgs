@@ -14,8 +14,18 @@ if(${ROS_VERSION} EQUAL "1")
   SET(ROS_BUILD_STATIC_LIBS true)
   SET(ROS_BUILD_SHARED_LIBS false)
 
+  # Set the directory for message and service files
+  FILE(GLOB_RECURSE MSG_FILES msg/*.msg)
+  FILE(GLOB_RECURSE SRV_FILES srv/*.srv)
+
   ROSBUILD_GENMSG()
   ROSBUILD_GENSRV()
+
+  # Install generated message headers
+  INSTALL(
+    DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/msg_gen/cpp/include/
+    DESTINATION include
+  )
 elseif(${ROS_VERSION} EQUAL "2")
   message(STATUS "Compiling with ROS2 COLCON")
   find_package(ament_cmake REQUIRED)
@@ -52,6 +62,7 @@ elseif(${ROS_VERSION} EQUAL "2")
     "srv/graphNavGPSSrv.srv"
     "srv/ObjectDetectionSrv.srv"
     "srv/SocialPipsSrv.srv"
+    "srv/CarrotPlannerSrv.srv"
     "action/TurtlebotDock.action"
     DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs
   )
