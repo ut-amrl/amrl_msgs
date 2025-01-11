@@ -63,6 +63,7 @@ elseif(${ROS_VERSION} EQUAL "2")
     "srv/ObjectDetectionSrv.srv"
     "srv/SocialPipsSrv.srv"
     "srv/CarrotPlannerSrv.srv"
+    "srv/CostmapSrv.srv"
     "action/TurtlebotDock.action"
     DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs
   )
