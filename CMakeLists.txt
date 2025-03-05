@@ -20,12 +20,6 @@ if(${ROS_VERSION} EQUAL "1")
 
   ROSBUILD_GENMSG()
   ROSBUILD_GENSRV()
-
-  # Install generated message headers
-  INSTALL(
-    DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/msg_gen/cpp/include/
-    DESTINATION include
-  )
 elseif(${ROS_VERSION} EQUAL "2")
   message(STATUS "Compiling with ROS2 COLCON")
   find_package(ament_cmake REQUIRED)
@@ -51,6 +45,8 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/HumanStateArrayMsg.msg"
     "msg/HumanStateMsg.msg"
     "msg/Localization2DMsg.msg"
+    "msg/MissionStatusMsg.msg"
+    "msg/NavStatusMsg.msg"
     "msg/PathVisualization.msg"
     "msg/PlanarObjDetection.msg"
     "msg/Point2D.msg"
@@ -59,13 +55,28 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/RobofleetSubscription.msg"
     "msg/TurtlebotDockStatus.msg"
     "msg/VisualizationMsg.msg"
+    "srv/CarrotPlannerSrv.srv"
+    "srv/CostmapSrv.srv"
     "srv/GraphNavGPSSrv.srv"
     "srv/ObjectDetectionSrv.srv"
     "srv/SocialPipsSrv.srv"
-    "srv/CarrotPlannerSrv.srv"
-    "srv/CostmapSrv.srv"
     "action/TurtlebotDock.action"
-    DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs
+    DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs 
+  )
+
+  # --- Add install steps ---
+  # If you have headers in an include directory, install them:
+  if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include")
+    install(
+      DIRECTORY include/
+      DESTINATION include
+    )
+  endif()
+
+  # Install the generated interface files and any message, srv, or action files.
+  install(
+    DIRECTORY msg srv action
+    DESTINATION share/${PROJECT_NAME}
   )
 
   ament_package()
