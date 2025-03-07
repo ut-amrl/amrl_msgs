@@ -73,6 +73,14 @@ elseif(${ROS_VERSION} EQUAL "2")
     )
   endif()
 
+  # Install the generated libraries
+  install(
+    DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/rosidl_typesupport_fastrtps_cpp/" 
+    DESTINATION lib
+    FILES_MATCHING PATTERN "*.so"
+  )
+
+
   # Install the generated interface files and any message, srv, or action files.
   install(
     DIRECTORY msg srv action
