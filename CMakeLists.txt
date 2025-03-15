@@ -14,6 +14,10 @@ if(${ROS_VERSION} EQUAL "1")
   SET(ROS_BUILD_STATIC_LIBS true)
   SET(ROS_BUILD_SHARED_LIBS false)
 
+  # Set the directory for message and service files
+  FILE(GLOB_RECURSE MSG_FILES msg/*.msg)
+  FILE(GLOB_RECURSE SRV_FILES srv/*.srv)
+
   ROSBUILD_GENMSG()
   ROSBUILD_GENSRV()
 elseif(${ROS_VERSION} EQUAL "2")
@@ -36,9 +40,13 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/ElevatorCommand.msg"
     "msg/ElevatorStatus.msg"
     "msg/ErrorReport.msg"
+    "msg/GPSArrayMsg.msg"
+    "msg/GPSMsg.msg"
     "msg/HumanStateArrayMsg.msg"
     "msg/HumanStateMsg.msg"
     "msg/Localization2DMsg.msg"
+    "msg/MissionStatusMsg.msg"
+    "msg/NavStatusMsg.msg"
     "msg/PathVisualization.msg"
     "msg/PlanarObjDetection.msg"
     "msg/Point2D.msg"
@@ -47,10 +55,36 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/RobofleetSubscription.msg"
     "msg/TurtlebotDockStatus.msg"
     "msg/VisualizationMsg.msg"
+    "srv/CarrotPlannerSrv.srv"
+    "srv/CostmapSrv.srv"
+    "srv/GraphNavGPSSrv.srv"
     "srv/ObjectDetectionSrv.srv"
     "srv/SocialPipsSrv.srv"
     "action/TurtlebotDock.action"
-    DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs
+    DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs 
+  )
+
+  # --- Add install steps ---
+  # If you have headers in an include directory, install them:
+  if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include")
+    install(
+      DIRECTORY include/
+      DESTINATION include
+    )
+  endif()
+
+  # Install the generated libraries
+  install(
+    DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/rosidl_typesupport_fastrtps_cpp/" 
+    DESTINATION lib
+    FILES_MATCHING PATTERN "*.so"
+  )
+
+
+  # Install the generated interface files and any message, srv, or action files.
+  install(
+    DIRECTORY msg srv action
+    DESTINATION share/${PROJECT_NAME}
   )
 
   ament_package()
