@@ -1,0 +1,4 @@
+sensor_msgs/Image query_image
+string query_text
+---
+BBox2DArrayMsg bounding_boxes

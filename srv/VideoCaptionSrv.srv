@@ -1,0 +1,5 @@
+string prompt
+sensor_msgs/Image[] video
+---
+string caption
+
