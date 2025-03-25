@@ -17,6 +17,10 @@ ROS Message definitions used by UT-AMRL projects.
     export ROS_PACKAGE_PATH=`pwd`:$ROS_PACKAGE_PATH
     ```
     (Optional, reccomended) Add this to your `.bashrc`
-1. Run `make`. No need to run `catkin_*`, `rosbuild`, `rosbuild`, etc.
+   If you are using ROS2, you can add the following to your `.bashrc`:
+    ```
+    export AMENT_PREFIX_PATH=`pwd`:$AMENT_PREFIX_PATH
+    ```
+1. Run `make` and then run `make install`. No need to run `catkin_*`, `rosbuild`, `rosbuild`, etc.
 1. To use the messages from your own project, add `amrl_msgs` as a ros
    dependency to your project's `manifest.xml` or `package.xml`.

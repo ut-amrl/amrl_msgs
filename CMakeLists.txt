@@ -49,9 +49,13 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/VisualizationMsg.msg"
     "srv/ObjectDetectionSrv.srv"
     "srv/SocialPipsSrv.srv"
+    "srv/TwistExecutedSrv.srv"
     "action/TurtlebotDock.action"
     DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs
   )
+
+  # Export runtime dependencies
+  ament_export_dependencies(rosidl_default_runtime)
 
   ament_package()
 else()
