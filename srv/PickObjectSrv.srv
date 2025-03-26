@@ -1,3 +1,4 @@
-BBox2DArrayMsg bounding_boxes
+sensor_msgs/Image query_image
+string query_text
 ---
 bool success
