@@ -2,5 +2,6 @@ float32 x
 float32 y
 float32 theta
 ---
+bool success
 sensor_msgs/Image image
 Float32Array2D depth
