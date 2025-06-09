@@ -4,8 +4,5 @@ float32 z
 float32 theta
 ---
 bool success
-sensor_msgs/Image image
-sensor_msgs/Image left
-sensor_msgs/Image right
-sensor_msgs/Image back
 Float32Array2D depth
+sensor_msgs/Image[] pano_images

@@ -1,4 +1,6 @@
+int32 instance_id
 sensor_msgs/Image query_image
 string query_text
 ---
 bool success
+string instance_uid
