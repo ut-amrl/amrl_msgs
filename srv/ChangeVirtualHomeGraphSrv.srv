@@ -1,0 +1,4 @@
+string graph_path
+int32 scene_id
+---
+bool success
