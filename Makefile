@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 
-# Detect old ROS1 (rosbuild) by checking for $ROS_ROOT and the rosbuild.cmake file:
-CHECK_ROS1 = $(shell if [ -n "$$ROS_ROOT" ] && [ -f "$$ROS_ROOT/core/rosbuild/rosbuild.cmake" ]; then echo 1; else echo 0; fi)
+# Use the same detection logic as CMakeLists.txt
+ROS_VERSION := $(shell echo $$ROS_VERSION)
 
 #acceptable build_types: Release/Debug/Profile
 build_type=Release
@@ -9,23 +9,30 @@ build_type=Release
 
 .SILENT:
 
-all: build build/CMakeLists.txt.copy
-	$(info Build_type is [${build_type}])
-	$(MAKE) --no-print-directory -C build
+all: build-only install
 
+# Install target - handles ROS version differences
 install: build/CMakeLists.txt.copy
-	if [ "$(CHECK_ROS1)" = "1" ]; then \
-	  echo "Detected ROS1 (rosbuild). 'make install' not needed. Just use ROS_PACKAGE_PATH for static data."; \
+	if [ "$(ROS_VERSION)" = "1" ]; then \
+	  echo "ROS1 detected, no install needed (use ROS_PACKAGE_PATH)"; \
+	elif [ "$(ROS_VERSION)" = "2" ]; then \
+	  echo "ROS2 detected, installing to ./install ..."; \
+	  $(MAKE) --no-print-directory -C build install; \
 	else \
-	  echo "Detected ROS2 (ament). Installing to ./install ..."; \
+	  echo "Warning: ROS_VERSION not set, assuming ROS2"; \
 	  $(MAKE) --no-print-directory -C build install; \
 	fi
 
+# Build-only target (no install)
+build-only: build build/CMakeLists.txt.copy
+	$(info Build_type is [${build_type}])
+	$(MAKE) --no-print-directory -C build
+
 clean:
-	rm -rf build lib msg_gen src/amrl_msgs
+	rm -rf build lib msg_gen src/amrl_msgs install
 
 build/CMakeLists.txt.copy: build CMakeLists.txt Makefile msg
-	cd build && cmake -DCMAKE_BUILD_TYPE=$(build_type) ..
+	cd build && cmake -DCMAKE_BUILD_TYPE=$(build_type) -DCMAKE_INSTALL_PREFIX=../install ..
 	cp CMakeLists.txt build/CMakeLists.txt.copy
 
 build:

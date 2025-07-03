@@ -1,4 +1,6 @@
+.vscode
 build
+install
 lib
 msg_gen
 src/amrl_msgs

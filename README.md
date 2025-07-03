@@ -12,15 +12,15 @@ ROS Message definitions used by UT-AMRL projects.
 ## Usage
 
 1. Clone this repository.
-1. Add it to your `ROS_PACKAGE_PATH` environment variable:
+2. **For ROS1**: Add the path to your `~/.bashrc` file for the `ROS_PACKAGE_PATH` environment variable:
+    ```bash
+    echo "export ROS_PACKAGE_PATH=$(pwd):\$ROS_PACKAGE_PATH" >> ~/.bashrc
+    source ~/.bashrc
     ```
-    export ROS_PACKAGE_PATH=`pwd`:$ROS_PACKAGE_PATH
+3. **For ROS2**: Add the path to your `~/.bashrc` file for the `AMENT_PREFIX_PATH` environment variable:
+    ```bash
+    echo "export AMENT_PREFIX_PATH=$(pwd)/install:\$AMENT_PREFIX_PATH" >> ~/.bashrc
+    source ~/.bashrc
     ```
-    (Optional, reccomended) Add this to your `.bashrc`
-   If you are using ROS2, you can add the following to your `.bashrc`:
-    ```
-    export AMENT_PREFIX_PATH=`pwd`:$AMENT_PREFIX_PATH
-    ```
-1. Run `make` and then run `make install`. No need to run `catkin_*`, `rosbuild`, `rosbuild`, etc.
-1. To use the messages from your own project, add `amrl_msgs` as a ros
-   dependency to your project's `manifest.xml` or `package.xml`.
+4. Run `make`. This will automatically build and install (for ROS2) or just build (for ROS1). No need to run `catkin_*`, `rosbuild`, etc.
+5. To use the messages from your own project, add `amrl_msgs` as a ROS dependency to your project's `manifest.xml` or `package.xml`.
