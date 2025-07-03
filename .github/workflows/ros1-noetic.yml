@@ -1,51 +1,50 @@
 name: ROS1-Noetic
-# Run this workflow every time a new commit pushed to your repository
 on: push
 
 jobs:
   build-test-noetic:
-    # Name the Job
-    name: ROS1-Noetic-Ubuntu-20.04
-    # Set the type of machine to run on
-    runs-on: ubuntu-20.04
+    name: ROS1-Noetic
+    runs-on: ubuntu-22.04
+    container: ros:noetic
+
+    defaults:
+      run:
+        shell: bash -l {0}
 
     steps:
-      # Run package update
-      - name: Run package update
+      - name: Update apt and install dependencies
         run: |
-          sudo apt update
-          sudo apt dist-upgrade -y
+          apt-get update -y
+          apt-get install -y git build-essential cmake python3-rosdep python-is-python3 ros-noetic-rosbuild \
+            ros-noetic-geometry-msgs ros-noetic-nav-msgs ros-noetic-sensor-msgs ros-noetic-std-msgs \
+            ros-noetic-tf ros-noetic-angles
 
-      # Install dependencies
-      - name: Install dependencies
+      - name: Initialize rosdep
         run: |
-          sudo apt-get install g++ cmake libpopt-dev \
-            liblua5.1-dev libeigen3-dev \
-            libjpeg8-dev libgoogle-perftools-dev \
-            libsuitesparse-dev libblas-dev liblapack-dev libopenmpi-dev \
-            libgoogle-glog-dev libgflags-dev libceres-dev libtbb-dev
-
-      # Install ROS1 Noetic
-      - name: Install ROS1 Noetic
-        run: |
-          sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-          sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-          sudo apt update
-          sudo apt install ros-noetic-desktop
-          sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-          sudo rosdep init
+          rm -f /etc/ros/rosdep/sources.list.d/20-default.list
+          rosdep init || true
           rosdep update
 
-      # Checks out a copy of your repository
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: 'recursive'
 
-      # Compiles the code
-      - name: Run build
+      - name: Build amrl_msgs
         run: |
           source /opt/ros/noetic/setup.bash
-          export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$GITHUB_WORKSPACE
-          cd $GITHUB_WORKSPACE
+          export ROS_PACKAGE_PATH=$GITHUB_WORKSPACE:$ROS_PACKAGE_PATH
+          export ROS_VERSION=1
           make
+
+      - name: Verify build artifacts
+        run: |
+          if [ ! -d "./build" ]; then
+            echo "Error: build directory not found"
+            exit 1
+          fi
+          if [ ! -d "./msg_gen" ]; then
+            echo "Error: msg_gen directory not found"
+            exit 1
+          fi
+          echo "✓ ROS1 build artifacts verified successfully" 
