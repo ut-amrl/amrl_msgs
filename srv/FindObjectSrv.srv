@@ -1,4 +1,5 @@
 string query_text
+sensor_msgs/Image ref_image
 ---
 bool success
 int32 id
