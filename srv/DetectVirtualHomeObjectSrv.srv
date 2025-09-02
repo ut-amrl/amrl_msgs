@@ -1,0 +1,6 @@
+string query_text
+---
+bool success
+int32[] ids
+string[] visible_instances
+sensor_msgs/Image[] images
