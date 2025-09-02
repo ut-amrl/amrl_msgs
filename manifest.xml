@@ -15,7 +15,6 @@
   <depend package="rospy"/>
   <depend package="visualization_msgs"/>
   <depend package="tf"/>
-  <depend package="angles"/>
   <depend package="geometry_msgs"/>
 </package>
 
