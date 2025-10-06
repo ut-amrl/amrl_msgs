@@ -32,6 +32,7 @@ elseif(${ROS_VERSION} EQUAL "2")
 
   rosidl_generate_interfaces(${PROJECT_NAME}
     "msg/AckermannCurvatureDriveMsg.msg"
+    "msg/ArmStatus.msg"
     "msg/BBox2DArrayMsg.msg"
     "msg/BBox2DMsg.msg"
     "msg/ColoredArc2D.msg"
@@ -41,6 +42,7 @@ elseif(${ROS_VERSION} EQUAL "2")
     "msg/ElevatorCommand.msg"
     "msg/ElevatorStatus.msg"
     "msg/ErrorReport.msg"
+    "msg/GenericProgressStatus.msg"
     "msg/GPSArrayMsg.msg"
     "msg/GPSMsg.msg"
     "msg/HumanStateArrayMsg.msg"
