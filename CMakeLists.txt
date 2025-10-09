@@ -61,6 +61,7 @@ elseif(${ROS_VERSION} EQUAL "2")
     "srv/CarrotPlannerSrv.srv"
     "srv/CostmapSrv.srv"
     "srv/GraphNavGPSSrv.srv"
+    "srv/GraspPointSrv.srv"
     "srv/ObjectDetectionSrv.srv"
     "srv/SocialPipsSrv.srv"
     "srv/TwistExecutedSrv.srv"

@@ -1,0 +1,15 @@
+# Request
+sensor_msgs/Image image
+string query
+
+---
+# Response
+bool success
+# Pixel coordinates in the ORIGINAL image (origin: top-left)
+int32 x
+int32 y
+# Also return normalized coords in [0,1] for convenience
+float32 x_norm
+float32 y_norm
+# Optional info/error message
+string message
