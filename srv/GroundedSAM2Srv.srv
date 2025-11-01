@@ -1,0 +1,30 @@
+# Request
+sensor_msgs/Image image
+string text_prompt
+float32 box_threshold
+float32 text_threshold
+bool multimask_output   # if true, you’ll likely return one entry per mask instance
+
+---
+# Response
+# Meta
+std_msgs/Header header
+uint32 img_width
+uint32 img_height
+string box_format       # "xyxy"   (image coordinates)
+string rle_encoding     # "coco_rle"
+uint32 n                # number of instances (length of all arrays below)
+
+# Per-instance, all arrays must be length n and index-aligned
+float32[] x_min
+float32[] y_min
+float32[] x_max
+float32[] y_max
+
+string[]  class_name
+float32[] score
+
+# COCO compressed RLE for each instance’s mask
+string[]  rle_counts    # the COCO "counts" string (UTF-8)
+uint32[]  rle_height    # mask height  (usually equals img_height)
+uint32[]  rle_width     # mask width   (usually equals img_width)

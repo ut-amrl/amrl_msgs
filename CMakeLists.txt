@@ -66,6 +66,7 @@ elseif(${ROS_VERSION} EQUAL "2")
     "srv/SocialPipsSrv.srv"
     "srv/TwistExecutedSrv.srv"
     "srv/RecoveryDetectSrv.srv"
+    "srv/GroundedSAM2Srv.srv"
     "action/TurtlebotDock.action"
     "action/RecoveryExecute.action"
     DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs 
