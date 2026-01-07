@@ -1,0 +1,7 @@
+sensor_msgs/Image image
+string query
+---
+std_msgs/Header header       # Copy of the input image header
+geometry_msgs/Point point    # The predicted x,y coordinates
+string text_output           # The raw text from the model
+bool success                 # False if no point was found
