@@ -1,7 +1,7 @@
-Header header
+std_msgs/Header header
 
 # Header from the laser scan that was received closest to the creation of this report
-Header laser_header
+std_msgs/Header laser_header
 
 # Severity level enum
 uint8 INFO=0 # Information
