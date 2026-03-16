@@ -1,5 +1,6 @@
 sensor_msgs/Image image
 string query
+string mode # "pick" or "place"
 ---
 std_msgs/Header header       # Copy of the input image header
 geometry_msgs/Point point    # The predicted x,y coordinates
