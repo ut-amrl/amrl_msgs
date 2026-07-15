@@ -1,0 +1,6 @@
+# Request: image context for the anomaly-detection service.
+std_msgs/Header header
+sensor_msgs/Image[] images
+---
+bool anomaly
+BBox2DMsg[] detections
