@@ -1,0 +1,29 @@
+# Goal: rank candidate motion plans by VLM-assessed risk.
+# `candidates` are in the local (base_link) frame of the observation identified
+# by `header`, so the server scores them against the exact scene they were
+# planned on.
+std_msgs/Header header
+nav_msgs/Path[] candidates
+string task
+# Where the robot is trying to get to, as [x, y] in the same frame as
+# `candidates`. Per-query data: it tracks the planner's carrot, so it moves every
+# cycle. EMPTY means the client has no goal to offer; the server then scores on
+# safety and forward progress alone and draws no goal marker.
+float32[] goal
+---
+# Result: per-candidate risk, aligned index-for-index with the goal's candidates.
+#
+# SUCCEEDED with a full risk[] is the only usable outcome. ABORTED means risk
+# could not be assessed this cycle (no camera frame, no calibration, or a VLM
+# failure); the caller must fail closed and requery rather than selecting a
+# candidate risk-blind. CANCELED means the caller withdrew the request.
+float32[] risk
+# Metres of each candidate, from its start, whose ground was observed unoccluded in the
+# frames this assessment was made from. Index-aligned with risk[] and the goal's
+# candidates. EMPTY means the server does not compute it: the caller must fall back to
+# its own commitment bound rather than truncating to zero.
+float32[] visible_length
+float64 elapsed
+---
+# Feedback: wall-clock seconds spent executing this goal so far.
+float64 elapsed

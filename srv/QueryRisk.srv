@@ -1,7 +1,0 @@
-# Request: rank candidate motion plans by VLM-assessed risk.
-std_msgs/Header header
-nav_msgs/Path[] candidates
-string task
----
-# Response: per-candidate risk rankings (parallel arrays over candidate_ids).
-float32[] risk
