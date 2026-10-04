@@ -1,0 +1,18 @@
+# Request a motion plan from memo_deployment's motion planner (MemoVLA).
+#
+# The plan is computed from one camera image (the newest at or before `stamp`) and the keyframes before it, and
+# is expressed in base_link *at that image*. To use it later, move it into the current frame with
+# T_odom_base(now)^-1 * image_pose * waypoint, or look up TF for plan.header directly.
+
+# Goal
+string task                             # instruction rendered into the prompt; empty = the node's default
+geometry_msgs/PoseStamped goal          # target, any TF frame; transformed into the robot frame at the image
+builtin_interfaces/Time stamp           # request time: plan from the newest image at or before it (zero = latest)
+---
+# Result
+nav_msgs/Path plan                      # action_horizon poses in base_link at the image (header = {image_stamp, base_link})
+builtin_interfaces/Time image_stamp     # stamp of the last (current) image the plan was computed from
+geometry_msgs/PoseStamped image_pose    # SE(3) pose of base_link in odom at image_stamp
+float32 inference_ms                    # wall time of the model call
+---
+# Feedback

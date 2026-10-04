@@ -28,6 +28,7 @@ elseif(${ROS_VERSION} EQUAL "2")
   find_package(sensor_msgs REQUIRED)
   find_package(nav_msgs REQUIRED)
   find_package(std_msgs REQUIRED)
+  find_package(builtin_interfaces REQUIRED)
   find_package(rosidl_default_generators REQUIRED)
 
   rosidl_generate_interfaces(${PROJECT_NAME}
@@ -65,7 +66,8 @@ elseif(${ROS_VERSION} EQUAL "2")
     "srv/RecoveryDetectSrv.srv"
     "action/TurtlebotDock.action"
     "action/RecoveryExecute.action"
-    DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs 
+    "action/MemoMotionPlan.action"
+    DEPENDENCIES sensor_msgs geometry_msgs nav_msgs std_msgs builtin_interfaces
   )
 
   # --- Add install steps ---
